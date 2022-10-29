@@ -4,31 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
     <title>Discover the word</title>
 </head>
 <body>
-    <section>
+    
+    <section id="startScreen">
         <p>Aperte o botão para começar a jogar</p>
         <button id="start">Jogar</button>
     </section>
-    <section>
-        <h1>Tempo: <span id="time"></span> s</h1>
-    </section>
-    <section>
-        <h1>
-            <input type="text" name="word" id="word" />
-        </h1>
-        <h2>O total de letras da palavra a ser acertada é: <span id="numLetters"></span></h2>
-    </section>
-    <section>
-        <p>Até agora vc acertou as seguintes letras: <span id="matchLetters"></span></p>
-    </section>
-    <section>
-        <input type="text" id="guessWord">
+
+
+<hr>
+
+
+    <section id="gameScreen">   
+        <div id="gameScore">
+            <div>Tempo restante: <span id="timer"></span></div>
+            <div>Você ainda tem <span id="attempts">0</span> tentativas</div>
+        </div>
+
+
+        <h3>Discover the word</h3>
+
+        <div>Número de letras: <span id="numLetters"></span></div>
+        <div>Categoria da palavra: <span id="category"></span></div>
+
+        <div>Dica1: <span id="h1"></span><button>h1</button></div>
+        <div>Dica2: <span id="h2"></span><button>h2</button></div>
+        <div>Dica3: <span id="h3"></span><button>h3</button></div>
+
+        <p>Letras acertadas: <span id="matchLetters"></span></p>
+
+        <input id="guessWord" type="text" value="" placeholder="Guess the word!" />
         <button id="tryBtn">Tentar</button>
+        <div><span id="message"></span></div>
     </section>
 
-<script src="./js/DiscoverWord.js"></script>
-<script src="./js/index.js"></script>
+
+    <section id="gameMessage">
+        
+    </section>
+
+
+    <script src="./js/DiscoverWord.js"></script>
+    <script src="./js/index.js"></script>
+
 </body>
 </html>
