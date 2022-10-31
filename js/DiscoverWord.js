@@ -6,6 +6,7 @@ class DiscoverWord {
         this.attempts = 3;
         this.timeCounter = 60;
         this.selectedWord = '';
+        this.wordArray = [];
 
         this.wordList = [
             {
@@ -38,11 +39,16 @@ class DiscoverWord {
 
     
     pickOne() {
-        // filtrar pelo level (?)
+
         
         this.selectedWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
+        this.createWordArray();
+        localStorage.setItem("palavraSelecionada", this.selectedWord.word)
         return this.selectedWord
     }
+
+    
+
 
     setTimer() {
         const timer = document.querySelector('#timer'); 
@@ -62,25 +68,45 @@ class DiscoverWord {
 
     decreaseTime(seconds){        
         this.timeCounter -= seconds;
-        this.gameMessage("perdeu 5 segundos");
+        this.gameMessage(`perdeu ${seconds} segundos!`);
     }
 
     increaseTime(seconds){        
         this.timeCounter += seconds;
-        this.gameMessage("ganhou 5 segundos!");
+        this.gameMessage(`ganhou ${seconds} segundos!`);
     }
 
+    createWordArray() {
+        this.wordArray = this.selectedWord.word.split('');
+        
+    }
 
     checkLetter(letter) {
         const matchLetters = document.querySelector("#matchLetters");
+        const wrongLetters = document.querySelector('#wrongLetters');
+        const category = document.querySelector('#category');
         
-        // Se a letra digitada existe na palavra qu foi sorteada
-        // E se a letra já foi digitada anteriormente
-        if (this.selectedWord.word.includes(letter) && !matchLetters.innerText.includes(letter)) {
+        if (this.wordArray.includes(letter)) {
             
             // se acertou uma letra da palavra, ganha 5 segundos
+            const index = this.wordArray.indexOf(letter);
+
+            this.wordArray.splice(index, 1);
+            console.log(this.wordArray);
+
+            if (this.wordArray.length === 0){
+                guessWord.value = "";
+                console.log("Acertou todas das letras")
+                category.innerText = this.selectedWord.category;
+                document.querySelector('.dicas').classList.remove('invisible');
+
+            }
+
             this.increaseTime(5);
-            matchLetters.innerText += letter;
+            matchLetters.innerHTML += `<span class="roxo-border p-2">${letter.toUpperCase()}</span>`;
+        }
+        else{
+            wrongLetters.innerHTML += `<span class="roxo-border p-2">${letter.toUpperCase()}</span>`;
         };       
     }
 
@@ -112,10 +138,12 @@ class DiscoverWord {
     gameMessage(msg){
         const message = document.querySelector("#message");
 
-        message.innerText = msg;
+        // message.innerText = msg;
+        message.classList.remove('invisible');
         setTimeout(()=>{
-            message.innerText = "";
-        },500);
+            // message.innerText = "";
+            message.classList.add('invisible');
+        },1000);
     }
 
     gameSatus(){
