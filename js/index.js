@@ -1,18 +1,80 @@
 const game = new DiscoverWord();
 const start = document.querySelector('#start');
-const time = document.querySelector('#time');
-const word = document.querySelector('#word');
 const numLetters = document.querySelector('#numLetters');
-const matchLetters = document.querySelector("#matchLetters");
-const guessWord = document.querySelector("#guessWord");
-const tryBtn = document.querySelector("#tryBtn");
 
-start.addEventListener('click', startGame);
+const tryBtn = document.querySelector("#tryBtn");
+const guessWord = document.querySelector("#guessWord");
+const attempts = document.querySelector("#attempts");
+
+const h1 = document.querySelector('#h1');
+const h2 = document.querySelector('#h2');
+const h3 = document.querySelector('#h3');
+const dicas = document.querySelectorAll('.hint');
+
+
+start.addEventListener('click', ()=>{
+    const selectedWord = game.pickOne();
+    document.querySelector('main').classList.remove('d-none');
+    document.querySelector('.info').classList.add('d-none');
+    
+    // palavra sorteada
+    console.log(selectedWord.word); 
+    
+    numLetters.innerText = selectedWord.word.length;
+    category.innerText = selectedWord.category;
+
+    // número de tentativas
+    attempts.innerHTML = game.attempts;
+
+    // esconder pelo CSS
+    // h1.innerText = selectedWord.h1;
+    // h2.innerText = selectedWord.h2;
+    // h3.innerText = selectedWord.h3;
+
+    
+    game.setTimer();
+});
+
+
+guessWord.addEventListener('input', (event)=>{
+    game.checkLetter(event.data);   
+});
+
+
+tryBtn.addEventListener('click', ()=> {
+    game.checkWord(guessWord.value);
+    attempts.innerHTML = game.attempts;
+});
+
+dicas.forEach(dica => {
+    dica.addEventListener('click', () => {
+        game.decreaseTime(10);
+        if (dica.nextElementSibling.id === 'h1') {
+            dica.nextElementSibling.innerText = game.selectedWord.h1;
+        }
+        if (dica.nextElementSibling.id === 'h2') {
+            dica.nextElementSibling.innerText = game.selectedWord.h2;
+        }
+        if (dica.nextElementSibling.id === 'h3') {
+            dica.nextElementSibling.innerText = game.selectedWord.h3;
+        }
+    })
+});
+
+
+/*
+
+//const word = document.querySelector('#word');
+//const matchLetters = document.querySelector("#matchLetters");
+//const guessWord = document.querySelector("#guessWord");
+//const tryBtn = document.querySelector("#tryBtn");
+
 word.addEventListener('input', checkLetter);
 tryBtn.addEventListener('click', ()=> {
     game.checkWord(guessWord.value);
 });
 console.log(guessWord.value);
+
 function startGame() {
     game.pickOne();
     numLetters.innerText = game.countLetters();
@@ -48,6 +110,10 @@ function decreaseTime() {
 
     
 }
+
+*/
+
+
 
 // TODO Terminar a funcão giveHint
 // TODO Montar o dicionário de palavras
