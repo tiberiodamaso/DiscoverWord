@@ -1,5 +1,5 @@
 const game = new DiscoverWord();
-const start = document.querySelector('#start');
+const start = document.querySelectorAll('.start');
 const numLetters = document.querySelector('#numLetters');
 
 const tryBtn = document.querySelector("#tryBtn");
@@ -10,34 +10,53 @@ const h1 = document.querySelector('#h1');
 const h2 = document.querySelector('#h2');
 const h3 = document.querySelector('#h3');
 const dicas = document.querySelectorAll('.hint');
+const timer = document.querySelector('#timer'); 
+const close = document.querySelector('#close');
+const modalResult = new bootstrap.Modal('#modalResult', {});
 
 
-start.addEventListener('click', ()=>{
-    const selectedWord = game.pickOne();
-    document.querySelector('main').classList.remove('d-none');
-    document.querySelector('.info').classList.add('d-none');
+start.forEach((element, index) => {
+    element.addEventListener('click', ()=>{
+        
+        if (index === 0) {
+            const selectedWord = game.pickOne();
+            document.querySelector('main').classList.remove('d-none');
+            document.querySelector('.info').classList.add('d-none');
+            attempts.innerHTML = game.attempts;
+            console.log(selectedWord.word); 
+            numLetters.innerText = selectedWord.word.length;
+            category.innerText = selectedWord.category;
+            game.setTimer();
+        } else {
+            const selectedWord = game.pickOne();
+            game.attempts = 3;
+            game.timeCounter = 60;
+            attempts.innerHTML = game.attempts;
+            console.log(selectedWord.word); 
+            numLetters.innerText = selectedWord.word.length;
+            category.innerText = selectedWord.category;
+            document.querySelector('.dicas').classList.add('invisible');
+            matchLetters.innerHTML = '';
+            wrongLetters.innerHTML = '';
+            game.setTimer();
+        }
+        
+        // palavra sorteada
     
-    // palavra sorteada
-    console.log(selectedWord.word); 
-    
-    numLetters.innerText = selectedWord.word.length;
-    category.innerText = selectedWord.category;
-
-    // número de tentativas
-    attempts.innerHTML = game.attempts;
-
-    // esconder pelo CSS
-    // h1.innerText = selectedWord.h1;
-    // h2.innerText = selectedWord.h2;
-    // h3.innerText = selectedWord.h3;
-
-    
-    game.setTimer();
+        // número de tentativas
+    })
 });
 
 
 guessWord.addEventListener('input', (event)=>{
-    game.checkLetter(event.data);   
+    game.checkLetter(event.data);
+});
+
+guessWord.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13) {
+        game.checkWord(guessWord.value);
+        attempts.innerHTML = game.attempts;
+    } 
 });
 
 
@@ -61,58 +80,9 @@ dicas.forEach(dica => {
     })
 });
 
-
-/*
-
-//const word = document.querySelector('#word');
-//const matchLetters = document.querySelector("#matchLetters");
-//const guessWord = document.querySelector("#guessWord");
-//const tryBtn = document.querySelector("#tryBtn");
-
-word.addEventListener('input', checkLetter);
-tryBtn.addEventListener('click', ()=> {
-    game.checkWord(guessWord.value);
+close.addEventListener('click', () => {
+    location.reload();
 });
-console.log(guessWord.value);
-
-function startGame() {
-    game.pickOne();
-    numLetters.innerText = game.countLetters();
-    
-    decreaseTime();
-
-    // console.log(word);
-    // console.log(wordNumLetters);
-    // console.log(wordLetters);
-}
-
-function checkLetter(e) {
-    let letter = e.data;
-    console.log(e);
-    console.log(game.word);
-    console.log(letter);
-    if (game.word.includes(letter)) {
-        matchLetters.innerText += letter;
-    }
-    
-}
-
-function decreaseTime() {
-
-    let intervalId = setInterval(() => {
-        game.time --;
-        time.innerText = game.time;
-        // console.log(game.time);
-        if (game.time === 0) {
-            clearInterval(intervalId);
-        }
-    }, 1000)
-
-    
-}
-
-*/
-
 
 
 // TODO Terminar a funcão giveHint

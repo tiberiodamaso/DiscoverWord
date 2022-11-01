@@ -32,7 +32,15 @@ body{
     color: var(--roxo);
 }
 
+/* .bi-check-circle-fill {
+    color: var(--bs-orange);
+} */
+
 .form:focus-visible {
     border-color: var(--bs-orange) !important;
+}
+
+.dicas p {
+    color: var(--bs-orange);
 }
 

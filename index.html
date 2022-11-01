@@ -33,7 +33,7 @@
 
           <div class="col text-center">
             <h1>Aperte o botão para começar a jogar</h1>
-            <button class="btn btn-lg roxo text-white my-3" id="start">Jogar</button>
+            <button class="btn btn-lg roxo text-white my-3 start">Jogar</button>
         </div>
       </div>
       
@@ -50,25 +50,25 @@
     <section id="gameScreen" class="container">
       <div id="gameScore" class="row">
         <div class="col d-flex justify-content-between lead fs-4">
-        <div>Tempo restante: <span id="timer" class="fw-bold"></span></div>
-        <div>Você ainda tem: <span id="attempts" class="fw-bold">0</span> tentativas</div>
-        <div>Número de letras: <span id="numLetters" class="fw-bold"></span></div>
-    </div>
+          <div>Tempo restante: <span id="timer" class="fw-bold"></span></div>
+          <div>Você ainda tem: <span id="attempts" class="fw-bold">0</span> tentativas</div>
+          <div>Número de letras: <span id="numLetters" class="fw-bold"></span></div>
+        </div>
       </div>
 
 
     <!--PAINEL LETRAS CERTAS E ERRADAS-->
-    <section class="container my-5">
+    <section class="container mb-0 mt-5">
       <div class="row flex-column">
 
-        <div class="col d-flex justify-content-around lead fs-3">
+        <div class="col d-flex justify-content-around flex-column lead fs-3">
           <p>Letras acertadas: <span id="matchLetters">
           </span></p>
           <p>Letras erradas: <span id="wrongLetters"></span></p>
         </div>
 
         <div class="col text-center d-flex justify-content-center my-5">
-          <input class="border form-control-lg w-50 mx-2" id="guessWord" type="text" value="" placeholder="Guess the word!" />
+          <input class="border form-control-lg w-50 mx-2" id="guessWord" type="text" value="" placeholder="Guess the letters!" />
           <button id="tryBtn" class="btn btn-lg laranja text-white">Tentar</button>
         </div>
 
@@ -78,12 +78,13 @@
     <!--PAINEL MENSAGENS-->
     <section class="container">
       <div class="row flex-column">
-        <div class="col text-center d-flex justify-content-center">
-          <span id="message" class="lead fs-3 py-3 invisible">Ganhou 5 segundos</span>
-        </div>
+        <!-- <div class="col text-center d-flex justify-content-center">
+          <span id="message" class="lead fs-3 invisible">Ganhou 5 segundos</span>
+        </div> -->
 
         <!--DICAS DEPOIS QUE DESCOBRE TODAS AS LETRAS-->
         <div class="col invisible dicas lead">
+          <p class="fs-3 text-center">Você descobriu todas as letras da palavra. Tente agora acertar a palavra.</p>
           <h5>Dicas</h5>
           <h6>A cada dica utilizada você perderá 10s</h6>
           <div>Categoria da palavra: <span id="category"></span></div>
@@ -95,6 +96,26 @@
 
       </div>
     </section>
+
+    <!--MODAL RESULTADO-->
+
+<div class="modal fade" id="modalResult" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modal-title"><i class="bi bi-check-circle-fill px-3"></i>Parabéns !</h1>
+      </div>
+      <div class="modal-body">
+        <p id="word" class="fw-bold fs-2"></p>
+        <p id="message"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn roxo text-white start" id="playAgain" data-bs-dismiss="modal">Jogar novamente</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   </main>
     <script src="./js/DiscoverWord.js"></script>
