@@ -15,13 +15,13 @@
   </head>
   <body>
 <!--OBJETIVO E REGRAS-->
-    <section class="container py-3 info d-flex align-items-center vh-100">
-      <div class="row flex-column">
+    <section class="container p-5 info d-flex align-items-center vh-100 flex-wrap flex-md-nowrap">
+      <div class="row flex-column bg-white p-4">
         <div class="col fs-5">
             <h1 class="text-center"><i class="bi bi-file-word-fill"></i>Aprimore o seu inglês</h1>
-            <h2 class="py-3">Objetivo</h2>
+            <h3 class="py-3">Objetivo</h3>
               <p>Aumentar o seu vocabulário de inglês tentando advinhar uma palavra sorteada de um dicionário</p>
-            <h2 class="py-3">Regras</h2>
+            <h3 class="py-3">Regras</h3>
             <div class="">
             <p>1 - Descubra as letras que compõem a palavra sorteada</p>
             <p>2 - Cada letra acertada aparecerá no painel de LETRAS ACERTADAS, mas não necessariamente na ordem em que aparece na palavra</p>
@@ -32,9 +32,8 @@
           </div>
 
           <div class="col text-center">
-            <h1>Aperte o botão para começar a jogar</h1>
             <button class="btn btn-lg roxo text-white my-3 start">Jogar</button>
-        </div>
+          </div>
       </div>
       
       <div class="row">
@@ -44,14 +43,15 @@
 
     <!--JOGO-->
     <main class="d-none d-flex flex-column justify-content-center vh-100">
-      <h1 class="text-center my-5"><i class="bi bi-file-word-fill"></i>Aprimore o seu inglês</h1>
+      
     
     <!--PAINEL SCORE-->
-    <section id="gameScreen" class="container">
+    <section id="gameScreen" class="container bg-white">
+      <h1 class="text-center my-5"><i class="bi bi-file-word-fill"></i>Aprimore o seu inglês</h1>
       <div id="gameScore" class="row">
-        <div class="col d-flex justify-content-between lead fs-4">
-          <div>Tempo restante: <span id="timer" class="fw-bold"></span></div>
-          <div>Você ainda tem: <span id="attempts" class="fw-bold">0</span> tentativas</div>
+        <div class="col d-flex justify-content-around lead fs-4 flex-wrap roxo-border p-3 mx-3">
+          <div>Tempo: <span id="timer" class="fw-bold"></span></div>
+          <div>Tentativas: <span id="attempts" class="fw-bold">0</span></div>
           <div>Número de letras: <span id="numLetters" class="fw-bold"></span></div>
         </div>
       </div>
@@ -61,14 +61,14 @@
     <section class="container mb-0 mt-5">
       <div class="row flex-column">
 
-        <div class="col d-flex justify-content-around flex-column lead fs-3">
+        <div class="col d-flex justify-content-around flex-column lead fs-4 p-0">
           <p>Letras acertadas: <span id="matchLetters">
           </span></p>
-          <p>Letras erradas: <span id="wrongLetters"></span></p>
+          <p>Letras erradas: <span id="wrongLetters" class="d-flex flex-wrap"></span></p>
         </div>
 
         <div class="col text-center d-flex justify-content-center my-5">
-          <input class="border form-control-lg w-50 mx-2" id="guessWord" type="text" value="" placeholder="Guess the letters!" />
+          <input class="border form-control-lg w-75 mx-2" id="guessWord" type="text" value="" placeholder="Guess the letters!" />
           <button id="tryBtn" class="btn btn-lg laranja text-white">Tentar</button>
         </div>
 
@@ -111,7 +111,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn roxo text-white start" id="playAgain" data-bs-dismiss="modal">Jogar novamente</button>
+        <button type="button" class="btn roxo text-white" id="playAgain" data-bs-dismiss="modal">Jogar novamente</button>
       </div>
     </div>
   </div>

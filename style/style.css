@@ -3,8 +3,11 @@
     --roxo: #6765dd;
 }
 
-body{
-    /* background-color: #F3EAF4; */
+body {
+    background-image: url("../assets/word-bkg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #7894ff;
 }
 
 .laranja {

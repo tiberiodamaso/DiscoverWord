@@ -2,12 +2,11 @@ class DiscoverWord {
     
     constructor () {
         
-        this.player = "";
-        this.attempts = 3;
-        this.timeCounter = 90;
-        this.selectedWord = '';
-        this.wordArray = [];
-        this.intervalId = 0;
+        // this.attempts = 3;
+        // this.timeCounter = 90;
+        // this.selectedWord = '';
+        // this.wordArray = [];
+        // this.intervalId = 0;
 
         this.wordList = [
             {
@@ -161,6 +160,8 @@ class DiscoverWord {
             
 
         ]
+
+        this.start ();
     }
 
     
@@ -235,12 +236,15 @@ class DiscoverWord {
 
             if (this.wordArray.length === 0){
                 guessWord.value = "";
-                guessWord.placeholder = 'Now try to guess the word!';
+                guessWord.placeholder = 'Guess the word!';
                 console.log("Descobriu todas das letras da palavra");
                 category.innerText = this.selectedWord.category;
                 document.querySelector('.dicas').classList.remove('invisible');
 
             }
+            //audio
+            let audio = new Audio("./assets/mixkit-fairy-arcade-sparkle.mp3");
+            audio.play();
 
             this.increaseTime(10);
             matchLetters.innerHTML += `<span class="roxo-border p-2">${letter.toUpperCase()}</span>`;
@@ -318,6 +322,27 @@ class DiscoverWord {
         document.querySelector('#modal-title').innerText = `${title}`;
         document.querySelector('#word').innerText = `${word}`;
         document.querySelector('#message').innerText = `${msg}`;
+
+    }
+
+    start () {
+        this.attempts = 3;
+        this.timeCounter = 90;
+        this.selectedWord = '';
+        this.wordArray = [];
+        this.intervalId = 0;
+    }
+
+    clearAll () {
+        attempts.innerHTML = this.attempts;
+        this.setTimer();
+        this.selectedWord = this.pickOne();
+        numLetters.innerText = this.selectedWord.word.length;
+        category.innerText = this.selectedWord.category;
+        matchLetters.innerHTML = '';
+        wrongLetters.innerHTML = '';
+        document.querySelector('.dicas').classList.add('invisible');
+        guessWord.value = '';
 
     }
     
