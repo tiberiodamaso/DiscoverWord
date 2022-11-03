@@ -47,7 +47,10 @@ start.addEventListener('click', ()=>{
 
 
 guessWord.addEventListener('input', (event)=>{
-    game.checkLetter(event.data);
+    if (event.data !== null){
+        game.checkLetter(event.data);
+    }
+    
 });
 
 guessWord.addEventListener('keyup', (event) => {
