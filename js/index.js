@@ -11,6 +11,7 @@ const h1 = document.querySelector('#h1');
 const h2 = document.querySelector('#h2');
 const h3 = document.querySelector('#h3');
 const hints = document.querySelectorAll('.hint');
+const level = document.querySelector('#level'); 
 const timer = document.querySelector('#timer'); 
 const close = document.querySelector('#close');
 const modalResult = new bootstrap.Modal('#modalResult', {});
@@ -22,7 +23,8 @@ start.addEventListener('click', ()=>{
     document.querySelector('main').classList.remove('d-none');
     document.querySelector('.info').classList.add('d-none');
     attempts.innerHTML = game.attempts;
-    console.log(selectedWord.word); 
+    //console.log(selectedWord.word); 
+    level.innerText = game.level;
     numLetters.innerText = selectedWord.word.length;
     category.innerText = selectedWord.category;
     game.setTimer();
@@ -86,15 +88,13 @@ close.addEventListener('click', () => {
 });
 
 playAgain.addEventListener('click', () => {
+    game.level++;
+    if (game.level === 3){
+        playAgain.classList.add("d-none");
+    }
+
     game.start();
     game.clearAll();
 });
 
 
-
-// TODO Terminar a funcão giveHint
-// TODO Montar o dicionário de palavras
-// TODO Consertar a função checckLetter para funcionar dentro da classe
-// TODO Frontend
-// TODO Pensar na lógica de um botão de dica que se usado perde alguns segundos
-// TODO Lógica para subir de level
