@@ -28,23 +28,7 @@ start.addEventListener('click', ()=>{
     numLetters.innerText = selectedWord.word.length;
     category.innerText = selectedWord.category;
     game.setTimer();
-        // } else {
-        //     const selectedWord = game.pickOne();
-        //     game.attempts = 3;
-        //     game.timeCounter = 60;
-        //     attempts.innerHTML = game.attempts;
-        //     console.log(selectedWord.word); 
-        //     numLetters.innerText = selectedWord.word.length;
-        //     category.innerText = selectedWord.category;
-        //     document.querySelector('.dicas').classList.add('invisible');
-        //     matchLetters.innerHTML = '';
-        //     wrongLetters.innerHTML = '';
-        //     game.setTimer();
-        // }
         
-        // palavra sorteada
-    
-        // número de tentativas
 });
 
 

@@ -3,11 +3,6 @@ class DiscoverWord {
     constructor () {
         
         this.level = 1;
-        // this.attempts = 3;
-        // this.timeCounter = 90;
-        // this.selectedWord = '';
-        // this.wordArray = [];
-        // this.intervalId = 0;
 
         this.wordList = [
             {
@@ -302,6 +297,7 @@ class DiscoverWord {
                 let title = 'Você perdeu';
                 let word = this.selectedWord.word;
                 let msg = this.selectedWord.definition;
+                document.querySelector('#playAgain').classList.add('d-none');
                 this.callModal(title, word, msg);
                 // document.querySelector('#modal-title').innerHTML = `<i class="bi bi-emoji-frown-fill px-3"></i>Seu tempo acabou!`;
                 // document.querySelector('#message').innerText = 'Você perdeu.';
@@ -367,7 +363,7 @@ class DiscoverWord {
             let audio = new Audio("./assets/mixkit-fairy-arcade-sparkle.mp3");
             audio.play();
 
-            this.increaseTime(10);
+            this.increaseTime(5);
             matchLetters.innerHTML += `<span class="roxo-border p-2">${letter.toUpperCase()}</span>`;
         }
         else {
@@ -432,6 +428,7 @@ class DiscoverWord {
             let title = 'Você perdeu';
             let word = this.selectedWord.word;
             let msg = this.selectedWord.definition;
+            document.querySelector('#playAgain').classList.add('d-none');
             this.callModal(title, word, msg);
             clearInterval(this.intervalId);
         }
@@ -453,6 +450,9 @@ class DiscoverWord {
         this.wordArray = [];
         this.intervalId = 0;
         document.querySelector('#level').innerText  = this.level;
+        document.querySelector('#h1').innerText = '';
+        document.querySelector('#h2').innerText = '';
+        document.querySelector('#h3').innerText = '';
    
     }
 
