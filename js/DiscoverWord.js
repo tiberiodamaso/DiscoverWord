@@ -226,7 +226,9 @@ class DiscoverWord {
         const wrongLetters = document.querySelector('#wrongLetters');
         const category = document.querySelector('#category');
         
-        if (this.wordArray.includes(letter)) {
+        
+
+        if (this.wordArray.includes(letter.toLowerCase())) {
             
             // se acertou uma letra da palavra, ganha 5 segundos
             const index = this.wordArray.indexOf(letter);
@@ -235,13 +237,18 @@ class DiscoverWord {
             console.log(this.wordArray);
 
             if (this.wordArray.length === 0){
-                guessWord.value = "";
+                
                 guessWord.placeholder = 'Guess the word!';
                 console.log("Descobriu todas das letras da palavra");
                 category.innerText = this.selectedWord.category;
                 document.querySelector('.dicas').classList.remove('invisible');
 
             }
+
+            setTimeout(() => {
+                guessWord.value = "";
+            }, 800);
+
             //audio
             let audio = new Audio("./assets/mixkit-fairy-arcade-sparkle.mp3");
             audio.play();
@@ -252,8 +259,17 @@ class DiscoverWord {
         else {
             if (this.wordArray.length > 0) {
                 wrongLetters.innerHTML += `<span class="border small text-black-50 p-2">${letter.toUpperCase()}</span>`;
+            
+                setTimeout(() => {
+                    guessWord.value = "";
+                }, 800);
+
             }
+
         }
+
+        
+        
     };       
     
 
@@ -314,6 +330,7 @@ class DiscoverWord {
             let word = this.selectedWord.word;
             let msg = this.selectedWord.definition;
             this.callModal(title, word, msg);
+            clearInterval(this.intervalId);
         }
     }
 
